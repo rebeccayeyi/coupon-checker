@@ -20,11 +20,13 @@ export default async function handler(req, res) {
   }
 
   const formula = `{Promo Code Static}='${coupon.replace(/'/g, "\\'")}'`;
+  console.log({ formula });
 
   // 1️⃣ Find coupon
   const findUrl = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(
     TABLE
   )}?filterByFormula=${encodeURIComponent(formula)}`;
+  console.log({ findUrl });
 
   const findRes = await fetch(findUrl, {
     headers: {
