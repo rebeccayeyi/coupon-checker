@@ -1,4 +1,14 @@
 export default async function handler(req, res) {
+  // 1️⃣ Allow cross-origin requests
+  res.setHeader("Access-Control-Allow-Origin", "*"); // allow all origins
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  // 2️⃣ Handle preflight requests
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   const coupon = req.query.coupon;
 
   if (!coupon) {
